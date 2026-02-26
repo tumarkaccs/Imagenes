@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Premium | Tu Marka</title>
+    <title>Catálogo Dinámico | Tu Marka</title>
     <style>
         :root {
             --petroleo: #0979f7;
@@ -25,25 +25,13 @@
         
         .contenedor { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
-        /* BOTÓN TIENDA DE PRODUCTOS */
         .btn-tienda {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: var(--purpura);
-            color: white;
-            text-decoration: none;
-            padding: 15px;
-            border-radius: 15px;
-            font-weight: 800;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 10px rgba(155, 48, 129, 0.2);
-            transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: var(--purpura); color: white; text-decoration: none;
+            padding: 15px; border-radius: 15px; font-weight: 800; margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(155, 48, 129, 0.2); transition: 0.3s;
         }
-        .btn-tienda:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
-        /* SELECTS Y PASOS */
         .pasos-filtro { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
         label { font-weight: 700; color: var(--petroleo); text-transform: uppercase; font-size: 0.8rem; margin-bottom: 5px; display: block; }
         select, input, textarea { 
@@ -51,7 +39,6 @@
             font-size: 1rem; background: white; outline: none;
         }
 
-        /* GRILLA */
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
         @media (min-width: 768px) { .grid { grid-template-columns: repeat(4, 1fr); } }
 
@@ -61,29 +48,23 @@
             border: 1px solid #edf2f7; text-align: center;
         }
         .card:hover { transform: translateY(-5px); }
-        .card img { width: 100%; height: 200px; object-fit: contain; padding: 10px; }
+        .card img { width: 100%; height: 200px; object-fit: contain; padding: 10px; background: white; }
         .card-info { padding: 10px; font-weight: 700; background: #f8fafc; font-size: 0.9rem; }
 
-        /* MODALES */
         .modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; padding: 15px;
         }
-        .modal-content { background: white; padding: 20px; border-radius: 20px; width: 100%; max-width: 450px; position: relative; max-height: 90vh; overflow-y: auto; }
+        .modal-content { background: white; padding: 20px; border-radius: 20px; width: 100%; max-width: 450px; max-height: 90vh; overflow-y: auto; }
         .modal img { width: 100%; max-height: 250px; object-fit: contain; border-radius: 10px; margin-bottom: 15px; }
 
-        /* LISTA DE REVISIÓN */
         .item-revision { display: flex; align-items: center; gap: 10px; padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 10px; }
         .item-revision img { width: 50px; height: 50px; object-fit: cover; border-radius: 5px; }
-        .info-revision { flex-grow: 1; font-size: 0.8rem; }
-        .btn-borrar { background: var(--rojo); color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-
-        /* BOTONES ACCIÓN */
+        
         .btn-primario { background: var(--petroleo); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 10px; }
         .btn-wa { background: var(--verde-wa); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; text-decoration: none; display: flex; justify-content: center; align-items: center; gap: 10px; }
         .btn-revisar { background: var(--purpura); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 10px; }
 
-        /* BARRA INFERIOR */
         .carrito-barra {
             position: fixed; bottom: 0; left: 0; width: 100%; background: var(--blanco);
             padding: 15px 20px; display: none; gap: 10px;
@@ -98,21 +79,17 @@
 
 <header>
     <div style="font-size: 1.8rem; font-weight: 900; color: var(--petroleo);">TU MARKA</div>
-    <div style="font-size: 0.7rem; font-weight: 700; color: var(--purpura); letter-spacing: 2px;">CATÁLOGO DE DISEÑOS</div>
+    <div style="font-size: 0.7rem; font-weight: 700; color: var(--purpura); letter-spacing: 2px;">CATÁLOGO INTELIGENTE</div>
 </header>
 
 <div class="contenedor">
-    <a href="https://tumarkaccs.github.io/tumarka/" class="btn-tienda">
-        🛒 Ir a Catálogo de Productos
-    </a>
+    <a href="https://tumarkaccs.github.io/tumarka/" class="btn-tienda">🛒 Ir a Catálogo de Productos</a>
 
     <div class="pasos-filtro">
         <div>
-            <label>1. ¿Para qué producto buscas el diseño?</label>
+            <label>1. ¿Qué producto deseas personalizar?</label>
             <select id="sel-prod" onchange="seleccionarProducto()">
-                <option value="">Selecciona...</option>
-                <option value="tula">Tulas / Morrales</option>
-                <option value="cover">Covers / Estuches</option>
+                <option value="">Cargando productos...</option>
             </select>
         </div>
         <div id="div-cat" class="seccion">
@@ -121,14 +98,14 @@
         </div>
         <div id="div-bus" class="seccion">
             <label>3. Busca tu Personaje:</label>
-            <input type="text" id="bus-pers" placeholder="Ej: Stitch, Spiderman..." oninput="filtrarPersonajes()">
+            <input type="text" id="bus-pers" placeholder="Ej: Mickey, Batman..." oninput="filtrarPersonajes()">
         </div>
     </div>
 
     <div id="seccion-personajes" class="grid seccion"></div>
 
     <div id="seccion-imagenes" class="seccion">
-        <button style="background:#cbd5e0; border:none; padding:10px 15px; border-radius:8px; font-weight:bold; margin-bottom:15px; cursor:pointer;" onclick="volverAPersonajes()">⬅ Volver a personajes</button>
+        <button style="background:#cbd5e0; border:none; padding:10px 15px; border-radius:8px; font-weight:bold; margin-bottom:15px; cursor:pointer;" onclick="volverAPersonajes()">⬅ Volver</button>
         <div id="grid-final" class="grid"></div>
     </div>
 </div>
@@ -136,9 +113,10 @@
 <div id="modalNota" class="modal">
     <div class="modal-content" onclick="event.stopPropagation()">
         <img id="img-nota" src="">
-        <h3 id="txt-nota-tit" style="margin:0 0 10px 0;"></h3>
-        <label>Observaciones o frase personalizada:</label>
-        <textarea id="nota-cliente" rows="3" placeholder="Ej: 2 tulas con nombre 'Santi', o fondo azul..."></textarea>
+        <h3 id="txt-nota-tit" style="margin:0;"></h3>
+        <p id="txt-prod-elegido" style="color:var(--purpura); font-weight:bold; margin-bottom:10px;"></p>
+        <label>Notas adicionales (Cantidades, nombres, etc):</label>
+        <textarea id="nota-cliente" rows="3" placeholder="Escribe aquí tus requerimientos..."></textarea>
         <button class="btn-primario" onclick="agregarAlCarrito()">✅ Añadir al pedido</button>
         <button style="background:none; border:none; color:#718096; margin-top:10px; width:100%; cursor:pointer;" onclick="cerrarModales()">Cancelar</button>
     </div>
@@ -146,49 +124,66 @@
 
 <div id="modalCarrito" class="modal">
     <div class="modal-content" onclick="event.stopPropagation()">
-        <h3>Diseños Seleccionados</h3>
+        <h3>Tu Selección</h3>
         <div id="lista-revision"></div>
-        <button class="btn-wa" onclick="enviarPedido()">🚀 Enviar Pedido por WhatsApp</button>
+        <button class="btn-wa" onclick="enviarPedido()">🚀 Enviar a WhatsApp</button>
         <button style="background:none; border:none; color:#718096; margin-top:15px; width:100%; cursor:pointer;" onclick="cerrarModales()">Seguir buscando</button>
     </div>
 </div>
 
 <div class="carrito-barra" id="barra-carrito">
-    <button class="btn-revisar" onclick="abrirCarrito()">Revisar Pedido (<span id="cant-items">0</span>)</button>
-    <button class="btn-wa" onclick="enviarPedido()">Enviar</button>
+    <button class="btn-revisar" onclick="abrirCarrito()">Revisar (<span id="cant-items">0</span>)</button>
+    <button class="btn-wa" onclick="enviarPedido()">Enviar Pedido</button>
 </div>
 
 <script>
     const URL_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTdjQeudLeSccCORPmrQSFjuC826ZE7Mm7pgxRQ99RBmfcMw9Xb6QmRETG--HavNoe_xGX2QtPtOfC7/pub?gid=940250029&single=true&output=csv';
-    const WHATSAPP = '584120000000'; // Tu número
+    const WHATSAPP = '584120000000'; 
 
-    let DATOS = [], CARRITO = [], pSel = '', cSel = '', nProd = '', tempImg = null;
+    let DATOS = [], CARRITO = [], PRODUCTOS = [], pSel = '', cSel = '', tempImg = null;
 
     async function cargar() {
         try {
             const res = await fetch(URL_CSV);
             const csv = await res.text();
-            DATOS = csv.split(/\r?\n/).slice(1).map(l => {
-                const c = l.split(',');
-                return { img: c[1]?.trim(), cat: c[2]?.trim(), pers: c[3]?.trim(), tula: c[4]?.trim().toUpperCase()==='SI', cover: c[5]?.trim().toUpperCase()==='SI' };
+            const filas = csv.split(/\r?\n/).map(l => l.split(','));
+            
+            // Detectar productos dinámicamente desde los encabezados (Col E en adelante)
+            const encabezados = filas[0];
+            PRODUCTOS = encabezados.slice(4).map(p => p.trim());
+
+            // Llenar selector de productos
+            const selProd = document.getElementById('sel-prod');
+            selProd.innerHTML = '<option value="">Selecciona un producto...</option>';
+            PRODUCTOS.forEach(p => selProd.innerHTML += `<option value="${p}">${p}</option>`);
+
+            // Procesar datos
+            DATOS = filas.slice(1).map(c => {
+                let obj = { img: c[1]?.trim(), cat: c[2]?.trim(), pers: c[3]?.trim() };
+                PRODUCTOS.forEach((p, index) => {
+                    obj[p] = c[4 + index]?.trim().toUpperCase() === 'SI';
+                });
+                return obj;
             }).filter(d => d.img && d.img.startsWith('http'));
-        } catch(e) { console.error("Error al cargar base de datos"); }
+
+        } catch(e) { console.error("Error cargando base de datos"); }
     }
 
     function seleccionarProducto() {
         pSel = document.getElementById('sel-prod').value;
-        nProd = document.getElementById('sel-prod').options[document.getElementById('sel-prod').selectedIndex].text;
-        const sCat = document.getElementById('sel-cat');
         if(!pSel) { document.getElementById('div-cat').style.display='none'; return; }
+        
         const cats = [...new Set(DATOS.filter(d => d[pSel]).map(d => d.cat))].sort();
+        const sCat = document.getElementById('sel-cat');
         sCat.innerHTML = '<option value="">Elige un tema...</option>';
         cats.forEach(c => sCat.innerHTML += `<option value="${c}">${c}</option>`);
         document.getElementById('div-cat').style.display = 'block';
+        ocultarTodoAbajo();
     }
 
     function seleccionarCategoria() {
         cSel = document.getElementById('sel-cat').value;
-        if(!cSel) return;
+        if(!cSel) { document.getElementById('div-bus').style.display='none'; return; }
         document.getElementById('div-bus').style.display = 'block';
         filtrarPersonajes();
     }
@@ -198,6 +193,7 @@
         const divPers = document.getElementById('seccion-personajes');
         const listaPers = DATOS.filter(d => d[pSel] && d.cat === cSel && d.pers.toLowerCase().includes(buscar));
         const unicos = [...new Map(listaPers.map(item => [item.pers, item])).values()];
+        
         divPers.innerHTML = '';
         unicos.forEach(p => {
             divPers.innerHTML += `<div class="card" onclick="verGaleria('${p.pers}')"><img src="${p.img}"><div class="card-info">${p.pers}</div></div>`;
@@ -212,22 +208,22 @@
         gridFinal.innerHTML = '';
         const finales = DATOS.filter(d => d[pSel] && d.cat === cSel && d.pers === nombre);
         finales.forEach(f => {
-            gridFinal.innerHTML += `<div class="card" onclick="abrirNota('${f.img}', '${f.pers}')"><img src="${f.img}"><div class="card-info">Seleccionar</div></div>`;
+            gridFinal.innerHTML += `<div class="card" onclick="abrirNota('${f.img}', '${f.pers}')"><img src="${f.img}"><div class="card-info">Elegir</div></div>`;
         });
         document.getElementById('seccion-imagenes').style.display = 'block';
     }
 
     function abrirNota(url, pers) {
-        tempImg = { id: Date.now(), url, pers, prod: nProd };
+        tempImg = { id: Date.now(), url, pers, prod: pSel };
         document.getElementById('img-nota').src = url;
         document.getElementById('txt-nota-tit').innerText = pers;
+        document.getElementById('txt-prod-elegido').innerText = `Para: ${pSel}`;
         document.getElementById('nota-cliente').value = '';
         document.getElementById('modalNota').style.display = 'flex';
     }
 
     function agregarAlCarrito() {
-        const nota = document.getElementById('nota-cliente').value;
-        CARRITO.push({ ...tempImg, nota: nota || 'Sin observaciones' });
+        CARRITO.push({ ...tempImg, nota: document.getElementById('nota-cliente').value || 'Sin notas' });
         actualizarBarra();
         cerrarModales();
     }
@@ -240,7 +236,7 @@
                 <div class="item-revision">
                     <img src="${item.url}">
                     <div class="info-revision">
-                        <strong>${item.pers}</strong> - ${item.prod}<br>
+                        <strong>${item.pers}</strong> (${item.prod})<br>
                         <em>${item.nota}</em>
                     </div>
                     <button class="btn-borrar" onclick="borrarItem(${item.id})">✖</button>
@@ -252,30 +248,22 @@
     function borrarItem(id) {
         CARRITO = CARRITO.filter(i => i.id !== id);
         actualizarBarra();
-        if(CARRITO.length === 0) cerrarModales();
-        else abrirCarrito();
+        if(CARRITO.length === 0) cerrarModales(); else abrirCarrito();
     }
 
     function actualizarBarra() {
-        const barra = document.getElementById('barra-carrito');
         document.getElementById('cant-items').innerText = CARRITO.length;
-        barra.style.display = CARRITO.length > 0 ? 'flex' : 'none';
+        document.getElementById('barra-carrito').style.display = CARRITO.length > 0 ? 'flex' : 'none';
     }
 
-    function cerrarModales() { 
-        document.getElementById('modalNota').style.display = 'none'; 
-        document.getElementById('modalCarrito').style.display = 'none'; 
-    }
-
-    function volverAPersonajes() { 
-        document.getElementById('seccion-imagenes').style.display = 'none'; 
-        document.getElementById('seccion-personajes').style.display = 'grid'; 
-    }
+    function cerrarModales() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); }
+    function volverAPersonajes() { document.getElementById('seccion-imagenes').style.display = 'none'; document.getElementById('seccion-personajes').style.display = 'grid'; }
+    function ocultarTodoAbajo() { document.getElementById('div-bus').style.display='none'; document.getElementById('seccion-personajes').style.display='none'; document.getElementById('seccion-imagenes').style.display='none'; }
 
     function enviarPedido() {
         let texto = `*SOLICITUD DE DISEÑOS - TU MARKA*\n--------------------------\n`;
         CARRITO.forEach((item, i) => {
-            texto += `*${i+1}. ${item.pers}* (${item.prod})\n`;
+            texto += `*${i+1}. ${item.pers}* para *${item.prod}*\n`;
             texto += `   Nota: ${item.nota}\n`;
             texto += `   Imagen: ${item.url}\n\n`;
         });
