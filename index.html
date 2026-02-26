@@ -25,9 +25,27 @@
         
         .contenedor { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
+        /* BOTÓN TIENDA DE PRODUCTOS */
+        .btn-tienda {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--purpura);
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(155, 48, 129, 0.2);
+            transition: 0.3s;
+        }
+        .btn-tienda:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
         /* SELECTS Y PASOS */
         .pasos-filtro { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
-        label { font-weight: 700; color: var(--petroleo); text-transform: uppercase; font-size: 0.8rem; }
+        label { font-weight: 700; color: var(--petroleo); text-transform: uppercase; font-size: 0.8rem; margin-bottom: 5px; display: block; }
         select, input, textarea { 
             width: 100%; padding: 14px; border-radius: 12px; border: 2px solid #e2e8f0; 
             font-size: 1rem; background: white; outline: none;
@@ -56,11 +74,11 @@
 
         /* LISTA DE REVISIÓN */
         .item-revision { display: flex; align-items: center; gap: 10px; padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 10px; }
-        .item-revision img { width: 50px; height: 50px; margin-bottom: 0; }
+        .item-revision img { width: 50px; height: 50px; object-fit: cover; border-radius: 5px; }
         .info-revision { flex-grow: 1; font-size: 0.8rem; }
         .btn-borrar { background: var(--rojo); color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
 
-        /* BOTONES */
+        /* BOTONES ACCIÓN */
         .btn-primario { background: var(--petroleo); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 10px; }
         .btn-wa { background: var(--verde-wa); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; text-decoration: none; display: flex; justify-content: center; align-items: center; gap: 10px; }
         .btn-revisar { background: var(--purpura); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 10px; }
@@ -80,13 +98,17 @@
 
 <header>
     <div style="font-size: 1.8rem; font-weight: 900; color: var(--petroleo);">TU MARKA</div>
-    <div style="font-size: 0.7rem; font-weight: 700; color: var(--purpura); letter-spacing: 2px;">GESTIÓN DE PEDIDOS</div>
+    <div style="font-size: 0.7rem; font-weight: 700; color: var(--purpura); letter-spacing: 2px;">CATÁLOGO DE DISEÑOS</div>
 </header>
 
 <div class="contenedor">
+    <a href="https://tumarkaccs.github.io/tumarka/" class="btn-tienda">
+        🛒 Ir a Catálogo de Productos
+    </a>
+
     <div class="pasos-filtro">
         <div>
-            <label>1. ¿Qué producto harás?</label>
+            <label>1. ¿Para qué producto buscas el diseño?</label>
             <select id="sel-prod" onchange="seleccionarProducto()">
                 <option value="">Selecciona...</option>
                 <option value="tula">Tulas / Morrales</option>
@@ -94,19 +116,19 @@
             </select>
         </div>
         <div id="div-cat" class="seccion">
-            <label>2. Tema:</label>
+            <label>2. Selecciona un Tema:</label>
             <select id="sel-cat" onchange="seleccionarCategoria()"></select>
         </div>
         <div id="div-bus" class="seccion">
-            <label>3. Personaje:</label>
-            <input type="text" id="bus-pers" placeholder="Buscar..." oninput="filtrarPersonajes()">
+            <label>3. Busca tu Personaje:</label>
+            <input type="text" id="bus-pers" placeholder="Ej: Stitch, Spiderman..." oninput="filtrarPersonajes()">
         </div>
     </div>
 
     <div id="seccion-personajes" class="grid seccion"></div>
 
     <div id="seccion-imagenes" class="seccion">
-        <button style="background:#cbd5e0; border:none; padding:10px; border-radius:8px; font-weight:bold; margin-bottom:15px;" onclick="volverAPersonajes()">⬅ Volver</button>
+        <button style="background:#cbd5e0; border:none; padding:10px 15px; border-radius:8px; font-weight:bold; margin-bottom:15px; cursor:pointer;" onclick="volverAPersonajes()">⬅ Volver a personajes</button>
         <div id="grid-final" class="grid"></div>
     </div>
 </div>
@@ -115,39 +137,42 @@
     <div class="modal-content" onclick="event.stopPropagation()">
         <img id="img-nota" src="">
         <h3 id="txt-nota-tit" style="margin:0 0 10px 0;"></h3>
-        <textarea id="nota-cliente" rows="3" placeholder="Ej: 2 unidades, agregar nombre 'Luis'..."></textarea>
-        <button class="btn-primario" onclick="agregarAlCarrito()">✅ Añadir a mi lista</button>
-        <button style="background:none; border:none; color:#718096; margin-top:10px; width:100%;" onclick="cerrarModales()">Cancelar</button>
+        <label>Observaciones o frase personalizada:</label>
+        <textarea id="nota-cliente" rows="3" placeholder="Ej: 2 tulas con nombre 'Santi', o fondo azul..."></textarea>
+        <button class="btn-primario" onclick="agregarAlCarrito()">✅ Añadir al pedido</button>
+        <button style="background:none; border:none; color:#718096; margin-top:10px; width:100%; cursor:pointer;" onclick="cerrarModales()">Cancelar</button>
     </div>
 </div>
 
 <div id="modalCarrito" class="modal">
     <div class="modal-content" onclick="event.stopPropagation()">
-        <h3>Tu Selección</h3>
+        <h3>Diseños Seleccionados</h3>
         <div id="lista-revision"></div>
-        <button class="btn-wa" onclick="enviarPedido()">🚀 Enviar todo por WhatsApp</button>
-        <button style="background:none; border:none; color:#718096; margin-top:10px; width:100%;" onclick="cerrarModales()">Seguir eligiendo</button>
+        <button class="btn-wa" onclick="enviarPedido()">🚀 Enviar Pedido por WhatsApp</button>
+        <button style="background:none; border:none; color:#718096; margin-top:15px; width:100%; cursor:pointer;" onclick="cerrarModales()">Seguir buscando</button>
     </div>
 </div>
 
 <div class="carrito-barra" id="barra-carrito">
-    <button class="btn-revisar" onclick="abrirCarrito()">Ver selección (<span id="cant-items">0</span>)</button>
-    <button class="btn-wa" onclick="enviarPedido()">Enviar WhatsApp</button>
+    <button class="btn-revisar" onclick="abrirCarrito()">Revisar Pedido (<span id="cant-items">0</span>)</button>
+    <button class="btn-wa" onclick="enviarPedido()">Enviar</button>
 </div>
 
 <script>
     const URL_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTdjQeudLeSccCORPmrQSFjuC826ZE7Mm7pgxRQ99RBmfcMw9Xb6QmRETG--HavNoe_xGX2QtPtOfC7/pub?gid=940250029&single=true&output=csv';
-    const WHATSAPP = '584120000000'; // TU NÚMERO
+    const WHATSAPP = '584120000000'; // Tu número
 
     let DATOS = [], CARRITO = [], pSel = '', cSel = '', nProd = '', tempImg = null;
 
     async function cargar() {
-        const res = await fetch(URL_CSV);
-        const csv = await res.text();
-        DATOS = csv.split(/\r?\n/).slice(1).map(l => {
-            const c = l.split(',');
-            return { img: c[1]?.trim(), cat: c[2]?.trim(), pers: c[3]?.trim(), tula: c[4]?.trim().toUpperCase()==='SI', cover: c[5]?.trim().toUpperCase()==='SI' };
-        }).filter(d => d.img && d.img.startsWith('http'));
+        try {
+            const res = await fetch(URL_CSV);
+            const csv = await res.text();
+            DATOS = csv.split(/\r?\n/).slice(1).map(l => {
+                const c = l.split(',');
+                return { img: c[1]?.trim(), cat: c[2]?.trim(), pers: c[3]?.trim(), tula: c[4]?.trim().toUpperCase()==='SI', cover: c[5]?.trim().toUpperCase()==='SI' };
+            }).filter(d => d.img && d.img.startsWith('http'));
+        } catch(e) { console.error("Error al cargar base de datos"); }
     }
 
     function seleccionarProducto() {
@@ -156,7 +181,7 @@
         const sCat = document.getElementById('sel-cat');
         if(!pSel) { document.getElementById('div-cat').style.display='none'; return; }
         const cats = [...new Set(DATOS.filter(d => d[pSel]).map(d => d.cat))].sort();
-        sCat.innerHTML = '<option value="">Elegir tema...</option>';
+        sCat.innerHTML = '<option value="">Elige un tema...</option>';
         cats.forEach(c => sCat.innerHTML += `<option value="${c}">${c}</option>`);
         document.getElementById('div-cat').style.display = 'block';
     }
@@ -202,7 +227,7 @@
 
     function agregarAlCarrito() {
         const nota = document.getElementById('nota-cliente').value;
-        CARRITO.push({ ...tempImg, nota: nota || 'Sin nota' });
+        CARRITO.push({ ...tempImg, nota: nota || 'Sin observaciones' });
         actualizarBarra();
         cerrarModales();
     }
@@ -215,7 +240,7 @@
                 <div class="item-revision">
                     <img src="${item.url}">
                     <div class="info-revision">
-                        <strong>${item.pers}</strong> (${item.prod})<br>
+                        <strong>${item.pers}</strong> - ${item.prod}<br>
                         <em>${item.nota}</em>
                     </div>
                     <button class="btn-borrar" onclick="borrarItem(${item.id})">✖</button>
@@ -248,11 +273,11 @@
     }
 
     function enviarPedido() {
-        let texto = `*NUEVO PEDIDO - TU MARKA*\n--------------------------\n`;
+        let texto = `*SOLICITUD DE DISEÑOS - TU MARKA*\n--------------------------\n`;
         CARRITO.forEach((item, i) => {
-            texto += `*${i+1}. ${item.pers}* para *${item.prod}*\n`;
+            texto += `*${i+1}. ${item.pers}* (${item.prod})\n`;
             texto += `   Nota: ${item.nota}\n`;
-            texto += `   Link: ${item.url}\n\n`;
+            texto += `   Imagen: ${item.url}\n\n`;
         });
         window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`);
     }
