@@ -267,9 +267,15 @@
             texto += `   Nota: ${item.nota}\n`;
             texto += `   Imagen: ${item.url}\n\n`;
         });
-        window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`);
-    }
 
+        const numero = WHATSAPP; // Asegúrate que sea solo números: 58412...
+        const mensaje = encodeURIComponent(texto);
+
+        // Usamos api.whatsapp.com que tiene mejor compatibilidad para forzar la App
+        const url = `https://api.whatsapp.com/send?phone=${numero}&text=${mensaje}`;
+        
+        window.open(url, '_blank');
+    }
     cargar();
 </script>
     <script>
@@ -287,5 +293,6 @@ function seleccionarImagen(nombreImagen) {
 </script>
 </body>
 </html>
+
 
 
