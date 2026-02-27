@@ -272,5 +272,19 @@
 
     cargar();
 </script>
+    <script>
+// Esta función se activará cuando el cliente haga clic en una imagen del catálogo
+function seleccionarImagen(nombreImagen) {
+    // Reemplaza 'URL_DE_TU_TIENDA' por el enlace real donde tienes la tienda
+    const urlTienda = "https://tumarkaccs.github.io/Tienda/"; 
+    
+    // Redirige de vuelta enviando el nombre de la imagen en la URL
+    window.location.href = urlTienda + "?imagen=" + encodeURIComponent(nombreImagen);
+}
+
+// Ejemplo de cómo aplicarlo a tus imágenes en el HTML:
+// <img src="diseño1.jpg" onclick="seleccionarImagen('Diseño Galaxia')">
+</script>
 </body>
 </html>
+
